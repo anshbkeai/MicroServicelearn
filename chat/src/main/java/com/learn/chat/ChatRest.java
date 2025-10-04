@@ -33,10 +33,10 @@ public class ChatRest {
     }
 
     @PostMapping("/{id}")
-    public ResponseEntity<String> chat(@PathVariable String id , @RequestBody Messages messages) {
+    public ResponseEntity<Messages> chat(@PathVariable String id , @RequestBody Messages messages) {
         //TODO: process POST request
         
-        return new ResponseEntity<String>(chatService.createChat(), org.springframework.http.HttpStatus.OK);
+        return new ResponseEntity<Messages>(chatService.getFromModel(id,messages), org.springframework.http.HttpStatus.OK);
     }
     
     @GetMapping("/{id}")

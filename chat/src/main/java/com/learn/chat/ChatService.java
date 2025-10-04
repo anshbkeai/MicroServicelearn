@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.learn.chat.Dto.Messages;
@@ -14,6 +15,10 @@ import com.learn.chat.Dto.Messages;
 public class ChatService {
 
     private Map<String,List<Messages>> message;
+
+    @Autowired
+    private ModeChat modeChat;
+
     public ChatService() {
         message = new HashMap<>();
     }
@@ -26,8 +31,10 @@ public class ChatService {
 
     public Messages getFromModel(String chat_id , Messages messages) {
         // call the Service 
-
-        return messages;
+        message.get(chat_id).add(messages);
+        Messages model_message = modeChat.Modelresp(messages).getBody();
+         message.get(chat_id).add(model_message);
+        return model_message;
     }
 
     public List<Messages> getAllMessages(String chat_id) {
