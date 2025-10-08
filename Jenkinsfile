@@ -6,7 +6,7 @@ pipeline {
                 sh 'echo Building...'
                 // For Maven: sh 'mvn clean install'
                 // For Node: sh 'npm install && npm run build'
-                 sh 'echo Building Changes for it Like web hOOK ADDED '
+                 sh 'echo Building Changes for it Like web hOOK ADDED ngork '
             }
         }
         stage('Test') {
